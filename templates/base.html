@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>16megabytes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/marx.min.css') }}" />
+    {% block extra_head %}{% endblock %}
+    {% block extra_scripts %}{% endblock %}
+</head>
+
+<body>
+    <nav role="navigation">
+        {% if session.logged_in %}
+        <a href="{{ url_for('create') }}">New</a>
+        <a href="{{ url_for('drafts') }}">Drafts</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </nav>
+    <main>
+        <header>
+            <center>
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='img/16mb.png') }}" alt="16MB" />
+                </a>
+            </center>
+        </header>
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+        <section>
+            <p><small>{{ message }}</small></p>
+        </section>
+        {% endfor %}
+        {% block search_bar %}
+        <form action="{{ url_for('index') }}" method="get" role="search">
+            <input id="input_text" name="q" type="text" placeholder="Search" value="{% if search %}{{ search }}{% endif %}">
+        </form>
+        {% endblock %}
+
+        {% block page_header %}{% endblock %}
+        <section>
+            <h1>{% block content_title %}{% endblock %}</h1>
+            {% block content %}{% endblock %}
+        </section>
+
+    </main>
+    <footer>
+        <p>16megabytes &copy; 2019</p>
+    </footer>
+</body>
+
+</html>

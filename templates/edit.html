@@ -1,0 +1,7 @@
+{% extends "create.html" %}
+
+{% block content_title %}Edit entry{% endblock %}
+
+{% block form_action %}{{ url_for('edit', slug=entry.slug) }}{% endblock %}
+
+{% block save_button %}Save changes{% endblock %}

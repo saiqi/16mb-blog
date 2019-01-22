@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content_title %}{{ entry.title }}{% endblock %}
+
+<p>{{ session.logged_in }}</p>
+
+{% if session.logged_in %}
+<a href="{{ url_for('edit', slug=entry.slug) }}">Edit</a>
+{% endif %}
+
+{% block content %}
+<p>Created {{ entry.timestamp.strftime('%m/%d/%Y at %I:%M%p') }}</p>
+{{ entry.content }}
+{% endblock %}

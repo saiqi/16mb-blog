@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block search_bar %}{% endblock%}
+
+{% block content_title %}Create entry{% endblock %}
+
+{% block content %}
+<form action="{% block form_action %}{{ url_for('create') }}{% endblock %}" method="post">
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" value="{{ entry.title }}">
+    <label for="content">Content</label>
+    <textarea id="content" name="content">{{ entry.content }}</textarea>
+    <label>
+        <input name="published" type="checkbox" value="y" {% if entry.published %} checked {% endif %}>Published?
+    </label>
+    <button type="submit">{% block save_button %}Create{% endblock %}</button>
+    <a href="{{ url_for('index') }}">Cancel</a>
+</form>
+{% endblock %}

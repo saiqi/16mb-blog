@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content_title %}Log out{% endblock %}
+
+{% block search_bar %}{% endblock%}
+
+{% block content %}
+<form action="{{ url_for('logout') }}" method="post">
+    <button type="submit">Log out</button>
+</form>
+{% endblock %}
